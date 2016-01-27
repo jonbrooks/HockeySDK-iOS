@@ -128,7 +128,7 @@
       BITHockeyAttachment *sourceAttachment = (BITHockeyAttachment *)item;
       
       if (!sourceAttachment.hockeyAttachmentData) {
-        BITHockeyLog(@"BITHockeyAttachment instance doesn't contain any data.");
+        BITHockeyLogDebug(@"BITHockeyAttachment instance doesn't contain any data.");
         continue;
       }
             

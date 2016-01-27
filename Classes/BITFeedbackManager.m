@@ -217,7 +217,7 @@ NSString *const kBITFeedbackUpdateAttachmentThumbnail = @"BITFeedbackUpdateAttac
 
 - (void)showFeedbackListView {
   if (_currentFeedbackListViewController) {
-    BITHockeyLog(@"INFO: update view already visible, aborting");
+    BITHockeyLogDebug(@"INFO: update view already visible, aborting");
     return;
   }
   dispatch_async(dispatch_get_main_queue(), ^{
@@ -242,7 +242,7 @@ NSString *const kBITFeedbackUpdateAttachmentThumbnail = @"BITFeedbackUpdateAttac
 
 - (void)showFeedbackComposeViewWithPreparedItems:(NSArray *)items{
   if (_currentFeedbackComposeViewController) {
-    BITHockeyLog(@"INFO: update view already visible, aborting");
+    BITHockeyLogDebug(@"INFO: update view already visible, aborting");
     return;
   }
   BITFeedbackComposeViewController *composeView = [self feedbackComposeViewController];
@@ -1145,7 +1145,7 @@ NSString *const kBITFeedbackUpdateAttachmentThumbnail = @"BITFeedbackUpdateAttac
       if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1){
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(screenshotNotificationReceived:) name:UIApplicationUserDidTakeScreenshotNotification object:nil];
       } else {
-        BITHockeyLog("WARNING: BITFeedbackObservationModeOnScreenshot requires iOS 7 or later.");
+        BITHockeyLogWarning(@"WARNING: BITFeedbackObservationModeOnScreenshot requires iOS 7 or later.");
       }
       
       self.screenshotNotificationEnabled = YES;

@@ -276,7 +276,7 @@
   NSDictionary *json = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
   
   if (error) {
-    BITHockeyLog(@"ERROR: Invalid JSON string. %@", [error localizedDescription]);
+    BITHockeyLogError(@"ERROR: Invalid JSON string. %@", [error localizedDescription]);
     return NO;
   }
   
@@ -285,10 +285,10 @@
   
   self.updateAvailable = [self hasNewVersion:json];
   
-  BITHockeyLog(@"INFO: Update available: %i", self.updateAvailable);
+  BITHockeyLogDebug(@"INFO: Update available: %i", self.updateAvailable);
   
   if (_lastCheckFailed) {
-    BITHockeyLog(@"ERROR: Last check failed");
+    BITHockeyLogError(@"ERROR: Last check failed");
     return NO;
   }
   
@@ -320,7 +320,7 @@
   
   // do we need to update?
   if (!manual && ![self shouldAutoCheckForUpdates]) {
-    BITHockeyLog(@"INFO: Update check not needed right now");
+    BITHockeyLogDebug(@"INFO: Update check not needed right now");
     self.checkInProgress = NO;
     return;
   }
@@ -334,7 +334,7 @@
       country = [NSString stringWithFormat:@"&country=%@", [(NSDictionary *)self.currentLocale objectForKey:NSLocaleCountryCode]];
     } else {
       // don't check, just to be save
-      BITHockeyLog(@"ERROR: Locale returned nil, can't determine the store to use!");
+      BITHockeyLogError(@"ERROR: Locale returned nil, can't determine the store to use!");
       self.checkInProgress = NO;
       return;
     }
@@ -407,7 +407,7 @@
 - (void)startManager {
   if ([self shouldCancelProcessing]) return;
   
-  BITHockeyLog(@"INFO: Start UpdateManager");
+  BITHockeyLogDebug(@"INFO: Start UpdateManager");
 
   if ([self.userDefaults objectForKey:kBITStoreUpdateDateOfLastCheck]) {
     self.lastCheck = [self.userDefaults objectForKey:kBITStoreUpdateDateOfLastCheck];
@@ -526,7 +526,7 @@
   if (_appStoreURLString) {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_appStoreURLString]];
   } else {
-    BITHockeyLog(@"WARNING: The app store page couldn't be opened, since we did not get a valid URL from the store API.");
+    BITHockeyLogWarning(@"WARNING: The app store page couldn't be opened, since we did not get a valid URL from the store API.");
   }
 }
 
