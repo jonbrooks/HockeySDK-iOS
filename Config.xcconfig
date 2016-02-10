@@ -1,0 +1,14 @@
+//
+//  Config.xcconfig
+//  HockeySDK-iOS
+//
+//  Created by jbrooks on 2/9/16.
+//  Copyright © 2016 jbrooks. All rights reserved.
+//
+
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) $(inherited) BITHOCKEY_VERSION="@\"3.8.5\"" BITHOCKEY_C_VERSION="\"3.8.5\"" BITHOCKEY_BUILD="@\"57\"" BITHOCKEY_C_BUILD="\"57\""
+
+HEADER_SEARCH_PATHS = $(inherited) "${SRCROOT}/Classes"
+OTHER_CFLAGS = $(inherited) -isystem "${SRCROOT}/Classes" -isystem "${SRCROOT}/Classes"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -framework "AssetsLibrary" -framework "CoreGraphics" -framework "CoreText" -framework "CrashReporter" -framework "MobileCoreServices" -framework "QuartzCore" -framework "QuickLook" -framework "Security" -framework "SystemConfiguration" -framework "UIKit"
+
